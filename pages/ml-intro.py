@@ -1,5 +1,4 @@
 import streamlit as st
-import pandas as pd
 
 st.title("ML Introduction")
 
@@ -7,7 +6,9 @@ st.write("""
          ##### Table of Contents
          * [Edible Mushroom](#edible-mushroom)
            * [Preparing Data](#preparing-data)
-           * [Model Theorem](#model-theorem)
+           * [Models Used and Theorem](#models-used-and-theorem)
+           * [Modelling](#modelling)
+           * [Try Demo](#try-demo)
          """)
 
 st.write("""
@@ -19,7 +20,159 @@ st.write("""
          #### Preparing Data
 
          First of all, I needed to find a dataset to train my AI model and I came across with [this one](https://www.kaggle.com/datasets/uciml/mushroom-classification). It contains 23 columns or 22 features with one label: `class`, containing two values: `p` for poisonous and `e` for edible—not poisonous.
+         """)
 
+with st.expander("And the rest 22 features are:"):
+    st.write("""
+         * `cap-shape`: The overall form of the mushroom's cap (pileus).
+           * bell = `b`
+           * conical = `c`
+           * convex = `x`
+           * flat = `f`
+           * knobbed = `k`
+           * sunken = `s`
+         * `cap-surface`: The texture of the cap's upper surface.
+           * fibrous = `f`
+           * grooves = `g`
+           * scaly = `y`
+           * smooth = `s` 
+         * `cap-color`:  The coloration of the mushroom's cap - varies widely between species and can change with age or damage.
+           * brown = `n`
+           * buff = `b`
+           * cinnamon = `c`
+           * gray=g,green = `r`
+           * pink = `p`
+           * purple = `u`
+           * red = `e`
+           * white = `w`
+           * yellow = `y`
+         * `bruises`: Indicates whether the mushroom flesh bruises or changes color when touched or damaged
+           * bruises = `t`
+           * no = `f`
+         * `odor`: Describes the smell of the mushroom, which can be a critical identification feature
+           * almond = `a`
+           * anise = `l`
+           * creosote = `c`
+           * fishy = `y`
+           * foul = `f`
+           * musty = `m`
+           * none = `n`
+           * pungent = `p`
+           * spicy = `s`
+         * `gill-attachment`: Describes how the gills attach to the stalk, an important taxonomic characteristic
+           * attached = `a`
+           * descending = `d`
+           * free = `f`
+           * notched = `n`
+         * `gill-spacing`: Indicates how closely the gills are positioned to each other
+           * close = `c`
+           * crowded = `w`
+           * distant = `d`
+         * `gill-size`: Describes the width of the gills
+           * broad = `b`
+           * narrow = `n`
+         * `gill-color`: The color of the gills, which can change with mushroom age and is important for identification
+           * black = `k`
+           * brown = `n`
+           * buff = `b`
+           * chocolate = `h`
+           * gray = `g`
+           * green = `r`
+           * orange = `o`
+           * pink = `p`
+           * purple = `u`
+           * red = `e`
+           * white = `w`
+           * yellow = `y`
+         * `stalk-shape`: Describes how the stalk's diameter changes from top to bottom
+           * enlarging = `e`
+           * tapering = `t`
+         * `stalk-root`: Describes the shape and characteristics of the base of the stalk
+           * bulbous = `b`
+           * club = `c`
+           * cup = `u`
+           * equal = `e`
+           * rhizomorphs = `z`
+           * rooted = `r`
+           * missing = `?`
+         * `stalk-surface-above-ring`: Texture of the stalk surface above the ring (if present)
+           * fibrous = `f`
+           * scaly = `y`
+           * silky = `k`
+           * smooth = `s`
+         * `stalk-surface-below-ring`: Texture of the stalk surface below the ring (if present)
+           * fibrous = `f`
+           * scaly = `y`
+           * silky = `k`
+           * smooth = `s`
+         * `stalk-color-above-ring`: Color of the stalk above the ring (if present)
+           * brown = `n`
+           * buff = `b`
+           * cinnamon = `c`
+           * gray = `g`
+           * orange = `o`
+           * pink = `p`
+           * red = `e`
+           * white = `w`
+           * yellow = `y`
+         * `stalk-color-below-ring`: Color of the stalk below the ring (if present)
+           * brown = `n`
+           * buff = `b`
+           * cinnamon = `c`
+           * gray = `g`
+           * orange = `o`
+           * pink = `p`
+           * red = `e`
+           * white = `w`
+           * yellow = `y`
+         * `veil-type`: Describes the type of veil, a membrane that protects the developing gills
+           * partial = `p`
+           * universal = `u`
+         * `veil-color`: Color of the veil
+           * brown = `n`
+           * orange = `o`
+           * white = `w`
+           * yellow = `y`
+         * `ring-number`: Indicates how many rings are on the stalk, formed from the partial veil
+           * none = `n`
+           * one = `o`
+           * two = `t`
+         * `ring-type`: Describes the shape and characteristics of the ring(s) on the stalk
+           * cobwebby = `c`
+           * evanescent = `e`
+           * flaring = `f`
+           * large = `l`
+           * none = `n`
+           * pendant = `p`
+           * sheathing = `s`
+           * zone = `z`
+         * `spore-print-color`: Color of the spore print, a critical feature for mushroom identification
+           * black = `k`
+           * brown = `n`
+           * buff = `b`
+           * chocolate = `h`
+           * green = `r`
+           * orange = `o`
+           * purple = `u`
+           * white = `w`
+           * yellow = `y`
+         * `population`: Describes how the mushrooms grow in relation to each other
+           * abundant = `a`
+           * clustered = `c`
+           * numerous = `n`
+           * scattered = `s`
+           * several = `v`
+           * solitary = `y`
+         * `habitat`: The environment where the mushroom typically grows
+           * grasses = `g`
+           * leaves = `l`
+           * meadows = `m`
+           * paths = `p`
+           * urban = `u`
+           * waste = `w`
+           * woods = `d`""")
+
+st.write("""
          Once I got my dataset, I loaded it as a dataframe `df` and began summarizing the dataset by using this code:
 
          ```py
@@ -54,11 +207,11 @@ st.write("""
          bool(df.duplicated().any())
          ```
 
-         ...it also returned `False`, which means there were no duplicates either. That's a pretty good sign for a good dataset.
+         ...it also returned `False`, which means there were no duplicates either. That's a pretty good sign for a good dataset (or so I thought, because there *will* be more issues).
 
          But either way, I still had to encode dataset values so let's do it.
 
-         At first, I was thinking of writing a dictionary containings a list for each columns containing a new value that are going to replace the existing one. But writing a dictionary for all 23 columns by hand, which I think they're all important, isn't going to be a good idea.
+         At first, I was thinking of writing a dictionary containings a list for each columns containing a new value that are going to replace the existing one. But writing a dictionary for all 23 columns by hand, which I *"thought"* they're all important, isn't going to be a good idea.
 
          So, I decided to loop through each column of the dataset, extract all possible values, and write them into a dictionary.
 
@@ -80,7 +233,51 @@ st.write("""
 
          This will return a number according to the index of that character in the dictionary.
 
-         Now, I was ready to encode all values in the dataset.
+         But wait a minute, let me just print the dictionary out...
+
+         ```py
+         {'class': ['p', 'e'],
+          'cap-shape': ['x', 'b', 's', 'f', 'k', 'c'],
+          'cap-surface': ['s', 'y', 'f', 'g'],
+          'cap-color': ['n', 'y', 'w', 'g', 'e', 'p', 'b', 'u', 'c', 'r'],
+          'bruises': ['t', 'f'],
+          'odor': ['p', 'a', 'l', 'n', 'f', 'c', 'y', 's', 'm'],
+          'gill-attachment': ['f', 'a'],
+          'gill-spacing': ['c', 'w'],
+          'gill-size': ['n', 'b'],
+          'gill-color': ['k', 'n', 'g', 'p', 'w', 'h', 'u', 'e', 'b', 'r', 'y', 'o'],
+          'stalk-shape': ['e', 't'],
+          'stalk-root': ['e', 'c', 'b', 'r', '?'],
+          'stalk-surface-above-ring': ['s', 'f', 'k', 'y'],
+          'stalk-surface-below-ring': ['s', 'f', 'y', 'k'],
+          'stalk-color-above-ring': ['w', 'g', 'p', 'n', 'b', 'e', 'o', 'c', 'y'],
+          'stalk-color-below-ring': ['w', 'p', 'g', 'b', 'n', 'e', 'y', 'o', 'c'],
+          'veil-type': ['p'],
+          'veil-color': ['w', 'n', 'o', 'y'],
+          'ring-number': ['o', 't', 'n'],
+          'ring-type': ['p', 'e', 'l', 'f', 'n'],
+          'spore-print-color': ['k', 'n', 'u', 'h', 'w', 'r', 'o', 'y', 'b'],
+          'population': ['s', 'n', 'a', 'v', 'y', 'c'],
+          'habitat': ['u', 'g', 'm', 'd', 'p', 'w', 'l']}
+         ```
+
+         Do you notice something weird in the dictionary? Well, there are two columns that I had to deal with: `veil-type` and `stalk-root`.
+
+         For `veil-type`, there is only one value instead of two, and for `stalk-root`, you will notice a `?` as one of the values in it—which isn't valid.
+
+         According to my research, veil type isn't really a good indicator for edible mushrooms, so I decided to just drop the entire column.
+
+         ```py
+         df = df.drop(columns=["veil-type"])
+         ```
+
+         And for `stalk-root`, I just dropped rows with an invalid "?" character.
+
+         ```
+         df = df[df["stalk-root"] != "?"]
+         ```
+
+         Now, with invalid data removed, I was ready to encode all values in the dataset.
 
          ```py
          for column in df.columns:
@@ -88,13 +285,13 @@ st.write("""
              df[column] = df[column].map(data_encoder)
          ```
 
-         Alright, let's see how's our dataset.
+         Alright, let's see how does our dataset look.
          """)
 
 st.image(img.open("images/ml-after-encode.png"))
 
 st.write("""
-         Nice! Now, they're all a number.
+         Nice! Now, they're all a number and pretty much clean.
 
          After all of that, I separated a `class` label from the rest of the features that I need.
 
@@ -119,4 +316,90 @@ st.write("""
          ```
 
          And that's pretty much it for preparing the data before using them for training.
+
+         #### Models Used and Theorem
+         The models that I will be using here are **Decision Tree** model and **Support Vector Machine** (SVM), which will both be wrapped with **Ensemble method**.
+
+         ##### Decision Tree
+         
+         (TODO)
+
+         ##### Support Vector Machine (SVM)
+
+         (TODO)
+
+         #### Modelling
+
+         Now let's make ourselves machine learning models. Starting with Decision Tree...
+
+         ```py
+         from sklearn.tree import DecisionTreeClassifier
+         
+         d3_clf = DecisionTreeClassifier()
+         d3_clf.fit(x_train, y_train)
+         ```
+
+         ...and followed by Support Vector Machine.
+
+         ```py
+         from sklearn.svm import SVC
+
+         svm_clf = SVC()
+         svm_clf.fit(x_train, y_train)
+         ```
+
+         But before we move on to wrapping them together, let's evaluate them first.
+
+         ```py
+         from sklearn.metrics import accuracy_score, precision_score, f1_score, recall_score, confusion_matrix
+         
+         d3_pred = d3_clf.predict(x_test)
+         svm_pred = svm_clf.predict(x_test)
+         
+         d3_accuracy = accuracy_score(y_test, d3_pred)
+         d3_precision = precision_score(y_test, d3_pred)
+         d3_recall = recall_score(y_test, d3_pred)
+         d3_f1 = f1_score(y_test, d3_pred)
+         d3_confusion_matrix = confusion_matrix(y_test, d3_pred)
+         
+         svm_accuracy = accuracy_score(y_test, svm_pred)
+         svm_precision = precision_score(y_test, svm_pred)
+         svm_recall = recall_score(y_test, svm_pred)
+         svm_f1 = f1_score(y_test, svm_pred)
+         svm_confusion_matrix = confusion_matrix(y_test, svm_pred)
+         ```
+
+         As you can see right here, I used testing data for both models to predict before finding their accuracy, precision, recall, F1 score, and their confusion matrix.
+
+         And the result... was surprisingly shocking.         
          """)
+
+st.image(img.open("images/ml-after-evaluation.png"))
+
+st.write("""
+         Both models got 100% on every metrics, leaving no false predictions.
+
+         I'll be honest, at the first time when I got this much score, I was skeptical. I didn't believe that the model would perform this good. But consider the fact that the value types in the dataset are pretty simple, it kind of makes sense.
+
+         Some times later, I learned about the `pd.factorize()` pandas method, and tried them on my notebook. However, the models seemed to perform worse for some reason, so I kept it in the same way.
+
+         Let's get back to the point. I then started modelling the Ensemble method, wrapping both models that I mentioned into it.
+
+         ```py
+         from sklearn.ensemble import VotingClassifier
+         
+         estimators = [("decision_tree", d3_clf),
+                       ("svm", svm_clf)]
+         
+         ensemble_clf = VotingClassifier(estimators)
+         ensemble_clf.fit_transform(x_train, y_train)
+         ```
+
+         I then evaluated the model and the result is pretty much the same, so I won't mention it here.
+
+         #### Try Demo
+
+         And that's about it for how I model and evaluate my AI models for predicting mushrooms edibility.
+         """)
+
+st.page_link("pages/ml-demo.py", label="Try it out here!")
