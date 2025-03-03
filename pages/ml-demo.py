@@ -17,12 +17,12 @@ def predict():
     df_user_input = pd.DataFrame(user_input, columns=user_input.keys(), index=[0])
 
     for column in df_user_input.columns:
-        df_user_input[column].loc[0] = global_data_encode.encode(
+        df_user_input.loc[0, column] = global_data_encode.encode(
             column,
             df_user_input[column].loc[0]
         )
 
-    df_user_input = scaler.transform(df_user_input)
+    df_user_input = pd.DataFrame(scaler.transform(df_user_input), columns=df_user_input.columns, index=[0])
 
     edible = model.predict(df_user_input)[0]
 
