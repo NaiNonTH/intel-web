@@ -320,13 +320,31 @@ st.write("""
          #### Models Used and Theorem
          The models that I will be using here are **Decision Tree** model and **Support Vector Machine** (SVM), which will both be wrapped with **Ensemble method**.
 
+         Both methods that I'm using here are supervised models.
+
          ##### Decision Tree
          
-         (TODO)
+         Source: https://www.geeksforgeeks.org/decision-tree/
+
+         Decision Tree is the most explainable machine learning model amongst the other algorithm; you can even make a diagram for it. The model itself works with many kinds of data like non-linear relationships. Feature Scaling is also not required. However, this algorithm can lead to overfitting or bias that focuses too much on features with many catergories.
+         
+         It is represented as a hierarchical tree containing these elements:
+         * Root Node: The big main question of the incoming problem and the entire point that represents the entire dataset.
+         * Branches: The lines that are connecting nodes, showing the flow from one decision to another.
+         * Internal Nodes: Points where decisions are made based on the input features.
+         * Leaf Node: The terminal nodes at the end of the tree that represents the prediction or the answer.
+         
+         When the model receives an input, it starts with a big main question at the top of the tree with its branches linking to two other smaller questions as the model answer the incoming question—yes or no. This keeps on going until the last question with its branches linking to the answer.
 
          ##### Support Vector Machine (SVM)
 
-         (TODO)
+         Source: https://medium.com/@RobuRishabh/support-vector-machines-svm-27cd45b74fbb
+
+         Support Vector Machine (SVM) can perform very well when its hyperparameter is tuned right while not using as much memory. However, it may take a lot of modelling time, and it doesn't perform well with overlapping classes.
+
+         The idea of SVM is to find the best margin (C) between a hyperplane—a decision boundary—and data points that are the closest to it called "support vectors."
+
+         You can tune the margin how much are you going to allow the model to make some errors to accommodate with the unseen data and not being too familiar with the training one. This process is called "Regularization" or "Generalization."
 
          #### Modelling
 
