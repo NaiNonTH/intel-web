@@ -420,4 +420,4 @@ st.write("""
          And that's about it for how I model and evaluate my AI models for predicting mushrooms edibility.
          """)
 
-st.page_link("pages/ml-demo.py", label="Try it out here!")
+st.page_link("pages/machine-learning-demo.py", label="Try it out here!")
