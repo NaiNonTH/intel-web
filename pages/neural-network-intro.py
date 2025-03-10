@@ -8,7 +8,7 @@ st.write("""
          * [Oral Cancer Predictor](#oral-cancer-predictor)
            * [Preparing Data](#preparing-data)
            * [Models Used and Theorem](#models-used-and-theorem)
-           * [Modelling](#modelling)
+           * [Modeling](#modeling)
            * [Fixing the Model](#fixing-the-model)
            * [Try Demo](#try-demo)
          """)
@@ -217,11 +217,20 @@ st.write("""
 
          ##### Feed Forward
 
-         (TODO)
+         Source: https://deepai.org/machine-learning-glossary-and-terms/feed-forward-neural-network
 
-         #### Modelling
+         Feed Forward is one of the simplest neural network model. It contains three layers:
+         * **Input Layer** consists of neurons that receives inputs and pass them to the next layer.
+         * **Hidden Layers** is considered a computational engine of neural network. Each hidden layer's neurons take the weighted sum of the outputs from the previous layer, apply an activation function to allow the model to learn complex patterns, and pass the result to the next layer.
+         * **Output Layer** is the final layer where outputs for the given inputs are produced.
 
-         The feed forward model that I set up is pretty simple. It only consists of an input layer, a big layer containing 8 hidden layers using `relu` activation, and an output layer using `sigmoid` activation that is suitable for binary classification.
+         The input flows forward from layer to layer until the prediction is made; we call this a **Feedforward Phase**. After that, the error is calculated and propagates back through the network, adjusting the weights to minimize the error; we call this a **Backpropagation Phase**.
+
+         However, it comes with some challenges. Adjusting the hidden layer including the number of neurons can be cumbersome but it significantly affects the model performance. Overfitting is also a common issue with Feed Forward, where the model only performs well on the training data and not the unseen data.
+
+         #### Modeling
+
+         The feed forward model that I set up is pretty simple. It only consists of an input layer, a big hidden layer containing 8 neurons with `relu` activation function, and an output layer using `sigmoid` activation that is suitable for binary classification.
 
          ```py
          from keras import models, layers
@@ -251,7 +260,7 @@ st.write("""
 
          #### Fixing the Model
 
-         This time, I'm going to remove all post-diagnosis data before splitting the dataset and use it for modelling again.
+         This time, I'm going to remove all post-diagnosis data before splitting the dataset and use it for modeling again.
 
          ```py
          from sklearn.preprocessing import MinMaxScaler

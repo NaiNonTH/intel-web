@@ -7,7 +7,7 @@ st.write("""
          * [Edible Mushroom](#edible-mushroom)
            * [Preparing Data](#preparing-data)
            * [Models Used and Theorem](#models-used-and-theorem)
-           * [Modelling](#modelling)
+           * [Modeling](#modeling)
            * [Try Demo](#try-demo)
          """)
 
@@ -340,13 +340,13 @@ st.write("""
 
          Source: https://medium.com/@RobuRishabh/support-vector-machines-svm-27cd45b74fbb
 
-         Support Vector Machine (SVM) can perform very well when its hyperparameter is tuned right while not using as much memory. However, it may take a lot of modelling time, and it doesn't perform well with overlapping classes.
+         Support Vector Machine (SVM) can perform very well when its hyperparameter is tuned right while not using as much memory. However, it may take a lot of modeling time, and it doesn't perform well with overlapping classes.
 
          The idea of SVM is to find the best margin (C) between a hyperplane—a decision boundary—and data points that are the closest to it called "support vectors."
 
          You can tune the margin how much are you going to allow the model to make some errors to accommodate with the unseen data and not being too familiar with the training one. This process is called "Regularization" or "Generalization."
 
-         #### Modelling
+         #### Modeling
 
          Now let's make ourselves machine learning models. Starting with Decision Tree...
 
@@ -401,7 +401,7 @@ st.write("""
 
          Some times later, I learned about the `pd.factorize()` pandas method, and tried them on my notebook. However, the models seemed to perform worse for some reason, so I kept it in the same way.
 
-         Let's get back to the point. I then started modelling the Ensemble method, wrapping both models that I mentioned into it.
+         Let's get back to the point. I then started modeling the Ensemble method, wrapping both models that I mentioned into it.
 
          ```py
          from sklearn.ensemble import VotingClassifier
