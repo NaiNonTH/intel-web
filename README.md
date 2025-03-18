@@ -21,7 +21,7 @@ From the project root...
 python -m venv .venv
 ```
 
-4. Active the virtual environment
+4. Activate the virtual environment
 
 ```
 # Powershell
